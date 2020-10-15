@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[87]:
+# In[166]:
 
 
 # %reset
 
 
-# In[88]:
+# In[167]:
 
 
 # REFERENCE 
@@ -22,19 +22,7 @@
 # https://docs.bokeh.org/en/latest/docs/user_guide/styling.html
 
 
-# In[150]:
-
-
-pd.__version__
-import numpy as np 
-np.__version__
-import bokeh
-bokeh.__version__
-import sklearn 
-sklearn.__version__
-
-
-# In[89]:
+# In[168]:
 
 
 import pandas as pd 
@@ -49,7 +37,7 @@ from bokeh.models.tools import HoverTool, PanTool, BoxZoomTool, WheelZoomTool, S
 from sklearn.preprocessing import MinMaxScaler
 
 
-# In[90]:
+# In[169]:
 
 
 fileName = '200927_ParsedVideoData_v4.csv'
@@ -59,7 +47,7 @@ data.publishedAt = pd.to_datetime(data.publishedAt)
 data.duration = pd.to_timedelta(data.duration)
 
 
-# In[91]:
+# In[170]:
 
 
 dataColor1 = '#003f5c'
@@ -68,7 +56,7 @@ dataColor3 = '#ef5675'
 dataColor4 = '#ffa600'
 
 
-# In[92]:
+# In[171]:
 
 
 # normalize data for plotting
@@ -78,7 +66,7 @@ data_normalized = pd.DataFrame(MinMaxScaler().fit_transform(data[data_columns]),
 data = pd.concat([data, data_normalized], axis=1)
 
 
-# In[144]:
+# In[175]:
 
 
 source = ColumnDataSource(data)
@@ -117,7 +105,7 @@ def create_text(text, text_color='grey', text_font_size='20px', fig_len=1200, fi
     fig.xaxis.visible = False 
     return fig
     
-def create_figures(source, source_columns, fig_len=1200, fig_height=130, data_colors=data_colors, hover_data=hover_data, alpha=0.2,
+def create_figures(source, source_columns, fig_len=1200, fig_height=130, data_colors=data_colors, hover_data=hover_data, alpha=0.,
                    figure_collector=figure_collector, fig_title=fig_title, sub_title=sub_title):
 
     
@@ -140,7 +128,7 @@ def create_figures(source, source_columns, fig_len=1200, fig_height=130, data_co
         fig.add_tools(*tools)
         
         # create the scatter plot 
-        scatter = Circle(x='publishedAt', y=source_columns[num], line_color=data_colors[num], fill_color=data_colors[num],                          size=6, fill_alpha=0, line_alpha=0
+        scatter = Circle(x='publishedAt', y=source_columns[num], line_color=data_colors[num], fill_color=data_colors[num],                          size=6, fill_alpha=alpha, line_alpha=alpha
                         )
         scatter_render = fig.add_glyph(source_or_glyph=source, glyph=scatter)
         # hover only over scatter plot
@@ -188,7 +176,7 @@ figures[-1].xaxis.axis_line_color = 'grey'
 
 
 # # share last figures x-axis with all figures to allow linked zoom and pan
-for fig in figures[:-1]: 
+for fig in figures[2:-1]: 
     fig.x_range = figures[-1].x_range
     fig.y_range = figures[-1].y_range
 
