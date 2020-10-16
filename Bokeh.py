@@ -7,7 +7,7 @@
 # %reset
 
 
-# In[167]:
+# In[2]:
 
 
 # REFERENCE 
@@ -22,7 +22,7 @@
 # https://docs.bokeh.org/en/latest/docs/user_guide/styling.html
 
 
-# In[168]:
+# In[3]:
 
 
 import pandas as pd 
@@ -34,10 +34,10 @@ from bokeh.models import ColumnDataSource, TapTool, OpenURL, CustomJSHover, Circ
 from bokeh.models.tickers import DatetimeTicker
 from bokeh.models.tools import HoverTool, PanTool, BoxZoomTool, WheelZoomTool, SaveTool, ResetTool, TapTool
 
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 
 
-# In[169]:
+# In[9]:
 
 
 fileName = '200927_ParsedVideoData_v4.csv'
@@ -47,7 +47,7 @@ data.publishedAt = pd.to_datetime(data.publishedAt)
 data.duration = pd.to_timedelta(data.duration)
 
 
-# In[170]:
+# In[10]:
 
 
 dataColor1 = '#003f5c'
@@ -56,17 +56,19 @@ dataColor3 = '#ef5675'
 dataColor4 = '#ffa600'
 
 
-# In[171]:
+# In[11]:
 
 
 # normalize data for plotting
 data_columns = ['viewCount', 'likeCount', 'dislikeCount', 'commentCount']
 source_columns = [x +'Norm' for x in data_columns]
-data_normalized = pd.DataFrame(MinMaxScaler().fit_transform(data[data_columns]), columns=source_columns)
+# data_normalized = pd.DataFrame(MinMaxScaler().fit_transform(data[data_columns]), columns=source_columns)
+data_normalized =(data[data_columns] -  data[data_columns].min())/(data[data_columns].max() - data[data_columns].min())
+data_normalized.columns = source_columns
 data = pd.concat([data, data_normalized], axis=1)
 
 
-# In[175]:
+# In[13]:
 
 
 source = ColumnDataSource(data)
