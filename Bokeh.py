@@ -111,10 +111,10 @@ def create_figures(source, source_columns, fig_len=1200, fig_height=130, data_co
                    figure_collector=figure_collector, fig_title=fig_title, sub_title=sub_title):
 
     
-    title = create_text(fig_title, text_color='#2b2d2f', text_font_size='40px', fig_height=60)
-    sub_title = create_text(sub_title, text_color='grey', text_font_size='20px', fig_height=40)
-    figure_collector.append(title)
-    figure_collector.append(sub_title)
+    # title = create_text(fig_title, text_color='#2b2d2f', text_font_size='40px', fig_height=60)
+    # sub_title = create_text(sub_title, text_color='grey', text_font_size='20px', fig_height=40)
+    # figure_collector.append(title)
+    # figure_collector.append(sub_title)
 
    
     num_figures = len(source_columns)
@@ -178,7 +178,7 @@ figures[-1].xaxis.axis_line_color = 'grey'
 
 
 # # share last figures x-axis with all figures to allow linked zoom and pan
-for fig in figures[2:-1]: 
+for fig in figures[:-1]: 
     fig.x_range = figures[-1].x_range
     fig.y_range = figures[-1].y_range
 
