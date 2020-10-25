@@ -109,7 +109,7 @@ def create_text(text, text_color='grey', text_font_size='20px', fig_len=1200, fi
     fig.xaxis.visible = False 
     return fig
     
-def create_figures(source, source_columns, fig_len=1400, fig_height=120, data_colors=data_colors, hover_data=hover_data, alpha=0.,
+def create_figures(source, source_columns, fig_len=1400, fig_height=120, data_colors=data_colors, hover_data=hover_data, alpha=0,
                    figure_collector=figure_collector, fig_title=fig_title, sub_title=sub_title):
 
     
@@ -132,7 +132,7 @@ def create_figures(source, source_columns, fig_len=1400, fig_height=120, data_co
         fig.add_tools(*tools)
         
         # create the scatter plot 
-        scatter = Circle(x='publishedAt', y=source_columns[num], line_color=data_colors[num], fill_color=data_colors[num],                          size=6, fill_alpha=alpha, line_alpha=alpha
+        scatter = Circle(x='publishedAt', y=source_columns[num], line_color=data_colors[num], fill_color=data_colors[num], size=6, fill_alpha=alpha, line_alpha=alpha
                         )
         scatter_render = fig.add_glyph(source_or_glyph=source, glyph=scatter)
         # hover only over scatter plot
@@ -144,11 +144,11 @@ def create_figures(source, source_columns, fig_len=1400, fig_height=120, data_co
         fig.add_tools(taptool)
     
         # create line plot without hover or top 
-        line = Line(x='publishedAt', y=source_columns[num], line_color=data_colors[num], line_width=2, line_alpha=1)
-        line_render = fig.add_glyph(source_or_glyph=source, glyph=line)
+        # line = Line(x='publishedAt', y=source_columns[num], line_color=data_colors[num], line_width=2, line_alpha=1)
+        # line_render = fig.add_glyph(source_or_glyph=source, glyph=line)
         
         # add series title
-        title = Text(x=data['publishedAt'].min(), y=0.2,                      text=[figure_titles[num]], text_color=data_colors[num], text_font_size='35px')
+        title = Text(x=data['publishedAt'].min(), y=0.2, text=[figure_titles[num]], text_color=data_colors[num], text_font_size='35px')
         fig.add_glyph(title)
                 
         # decrease clutter
