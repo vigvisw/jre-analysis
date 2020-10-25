@@ -59,7 +59,8 @@ dataColor4 = '#ffa600'
 
 
 # In[11]:
-
+fig_len = 1400
+fig_height = 120
 
 # normalize data for plotting
 data_columns = ['viewCount', 'likeCount', 'dislikeCount', 'commentCount']
@@ -97,7 +98,7 @@ figure_collector = []
 fig_title = 'The Joe Rogan Experience YouTube Statistics (2013 - 2020)'
 sub_title = 'Hover over line peak to see video details. Click to open YouTube video in new tab.'
 
-def create_text(text, text_color='grey', text_font_size='20px', fig_len=1200, fig_height=130):
+def create_text(text, text_color='grey', text_font_size='20px', fig_len=fig_len, fig_height=fig_height):
     fig = figure(plot_width=fig_len, plot_height=fig_height)
     text = Text(x=data['publishedAt'].min(), y=0,                      text=[text], text_color=text_color, text_font_size=text_font_size)
     fig.add_glyph(text)
@@ -109,7 +110,7 @@ def create_text(text, text_color='grey', text_font_size='20px', fig_len=1200, fi
     fig.xaxis.visible = False 
     return fig
     
-def create_figures(source, source_columns, fig_len=1400, fig_height=120, data_colors=data_colors, hover_data=hover_data, alpha=0.6,
+def create_figures(source, source_columns, fig_len=fig_len, fig_height=fig_height, data_colors=data_colors, hover_data=hover_data, alpha=0.6,
                    figure_collector=figure_collector, fig_title=fig_title, sub_title=sub_title):
 
     
@@ -126,7 +127,7 @@ def create_figures(source, source_columns, fig_len=1400, fig_height=120, data_co
     while num < num_figures:
         # create figure
         fig = figure(plot_width=fig_len, plot_height=fig_height, x_axis_type='datetime', name='data_series', output_backend="webgl")
-
+        fig.sizing_mode = 'scale_width'
         # add tools
         tools = [PanTool(), BoxZoomTool(), WheelZoomTool(), SaveTool(), ResetTool()]
         fig.add_tools(*tools)
@@ -186,6 +187,7 @@ for fig in figures[:-1]:
 
 
 layout = gridplot(figures, ncols=1)
+layout.sizing_mode = 'scale_width'
 curdoc().add_root(layout)
 curdoc().title = 'JRE Data Visualization'
 
