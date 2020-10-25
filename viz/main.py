@@ -26,6 +26,7 @@
 
 
 import pandas as pd 
+import os
 
 from bokeh.io import output_notebook, show, curdoc
 from bokeh.plotting import figure
@@ -40,7 +41,8 @@ from bokeh.models.tools import HoverTool, PanTool, BoxZoomTool, WheelZoomTool, S
 # In[9]:
 
 
-fileName = '200927_ParsedVideoData_v4.csv'
+fileName = './viz/200927_ParsedVideoData_v4.csv'
+print(os.getcwd())
 data = pd.read_csv(fileName)
 
 data.publishedAt = pd.to_datetime(data.publishedAt)
@@ -107,7 +109,7 @@ def create_text(text, text_color='grey', text_font_size='20px', fig_len=1200, fi
     fig.xaxis.visible = False 
     return fig
     
-def create_figures(source, source_columns, fig_len=1200, fig_height=130, data_colors=data_colors, hover_data=hover_data, alpha=0.,
+def create_figures(source, source_columns, fig_len=1400, fig_height=120, data_colors=data_colors, hover_data=hover_data, alpha=0.,
                    figure_collector=figure_collector, fig_title=fig_title, sub_title=sub_title):
 
     
@@ -159,7 +161,7 @@ def create_figures(source, source_columns, fig_len=1200, fig_height=130, data_co
         
         # format x-axis ticks 
         fig.xaxis.major_tick_line_color = "grey"
-        fig.xaxis.major_label_text_font_size = "12pt"
+        fig.xaxis.major_label_text_font_size = "15pt"
         fig.xaxis.major_label_text_color = "grey"
 
         
@@ -185,6 +187,7 @@ for fig in figures[:-1]:
 
 layout = gridplot(figures, ncols=1)
 curdoc().add_root(layout)
+curdoc().title = 'JRE Data Visualization'
 
 # uncomment if viewing on Jupyter Notebook
 # output_notebook()

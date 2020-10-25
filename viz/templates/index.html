@@ -1,0 +1,30 @@
+{% extends base %}
+
+{% block title %}Bokeh Gapminder Example{% endblock %}
+
+{% block postamble %}
+  <style>
+    {% include 'styles.css' %}
+  </style>
+{% endblock %}
+
+{% block contents %}
+  <div class="content">
+    <h1>Audience interaction and reaction to guests on The Joe Rogan Experience YouTube channel
+    </h1>
+    <p>
+    <a href="https://www.youtube.com/user/PowerfulJRE">The Joe Rogan Experience 
+    </a> (JRE) is one of the most influential podcasts on Earth. The recent <b>$100 million</b> multi-year exclusive licensing <b>deal between Spotify and JRE</b> is a testament to the massive popularity of Rogan, his guests, and the podcasting medium.<br><br>
+
+    The popularity of the podcast is driven by its guests. JRE's eclectic guest list includes the who's who of tech, entertainment, politics, and sports. <b>Elon Musk, Robert Downey Jr., Bernie Sanders, and Mike Tyson</b> are but a few among <b>JRE's star-studded guests</b>.<br><br>
+
+    This <b>interactive visualization</b> was created using Bokeh with the <b>goal of understanding audience interaction</b> (views/comments), 
+    <b>and reaction</b> (likes/dislikes) to the guests who have appeared on JRE's YouTube channel since 2013. 
+
+    <b>Hover</b> over the data to learn more about the <b>YouTube statistics</b> for videos featuring the guests. <b>Click</b> the data to <b>open the YouTube video</b> on your browser.
+  </p>
+
+    {{ super() }}
+{% endblock %}
+
+
