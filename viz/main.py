@@ -82,9 +82,9 @@ url = 'https://www.youtube.com/watch?v=@id'
 
 # configure hover tooltips
 hover_data = [('Guest', '@guestName'),
-             ('Number', '@videoNumber{0,0}'),
+             ('Episode #', '@videoNumber{0,0}'),
              ('Aired On', '@publishedAt{%F}'),
-             ('View', '@viewCount{0,0.0 a}'),
+             ('Views', '@viewCount{0,0.0 a}'),
              ('Likes', '@likeCount{0,0.0 a}'),
              ('Dislikes', '@dislikeCount{0,0.0 a}'),
              ('Comments', '@commentCount{0,0.0 a}'),
